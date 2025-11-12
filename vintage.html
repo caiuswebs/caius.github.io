@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vintessa Atelier | Vintage Luxury Reimagined</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ivory: #f9f9f6;
+        --charcoal: #121212;
+        --gold: #b49a5a;
+      }
+      body {
+        background: var(--ivory);
+        color: var(--charcoal);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4 {
+        font-family: "Playfair Display", serif;
+      }
+      header {
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      }
+      .hero {
+        background: url("https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background-attachment: fixed;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.3));
+      }
+      .hero-content {
+        z-index: 10;
+        color: #fff;
+        text-align: center;
+        padding: 2rem;
+      }
+      .cta {
+        background: var(--gold);
+        color: #fff;
+        padding: 0.75rem 2rem;
+        border-radius: 999px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+      }
+      .cta:hover {
+        background: #9e8647;
+      }
+      .product-card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+      .product-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .product-card:hover img {
+        transform: scale(1.05);
+      }
+      .price {
+        color: var(--gold);
+        font-weight: 500;
+      }
+      footer {
+        background: #111;
+        color: #e2dfd7;
+        padding: 4rem 1.5rem;
+        text-align: center;
+        border-top: 1px solid rgba(180, 154, 90, 0.2);
+      }
+      footer a {
+        color: #c5b37a;
+      }
+      /* MODAL */
+      .fade-overlay {
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+        z-index: 50;
+      }
+      .modal {
+        background: #fff;
+        border-radius: 1rem;
+        padding: 2rem;
+        max-width: 420px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header
+      id="header"
+      class="fixed top-0 left-0 w-full z-50 px-6 md:px-16 py-4 flex justify-between items-center bg-transparent"
+    >
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center font-bold text-lg text-gray-800">
+          V
+        </div>
+        <div>
+          <h1 class="text-gray-900 text-lg font-semibold tracking-widest">
+            VINTESSA
+          </h1>
+          <p class="text-xs text-[var(--gold)] uppercase tracking-widest">
+            Atelier of Timeless Design
+          </p>
+        </div>
+      </div>
+
+      <nav
+        class="hidden md:flex gap-10 text-sm uppercase tracking-widest text-gray-700"
+      >
+        <a href="#" class="hover:text-[var(--gold)] transition">Home</a>
+        <a href="#" class="hover:text-[var(--gold)] transition">Collection</a>
+        <a href="#" class="hover:text-[var(--gold)] transition">Story</a>
+        <a href="#" class="hover:text-[var(--gold)] transition">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2 class="text-5xl md:text-6xl font-semibold mb-4">
+          Where Time Meets Craft
+        </h2>
+        <p class="max-w-lg mx-auto mb-8 text-gray-200">
+          Discover handcrafted pieces that carry stories — every detail honoring
+          the art of creation.
+        </p>
+        <a href="#collection" class="cta">Explore Collection</a>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section id="collection" class="max-w-7xl mx-auto px-6 md:px-10 py-20">
+      <h2 class="text-3xl font-semibold text-center mb-12">
+        Featured Artifacts
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- PRODUCT -->
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1593032465171-8d7c2f5efaf0?auto=format&fit=crop&w=800&q=80"
+            alt="Leather Satchel"
+          />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold mb-2">
+              Heritage Leather Satchel
+            </h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Handcrafted with Italian full-grain leather — timeless and
+              enduring.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="price">$249</span>
+              <button
+                class="cta text-xs open-modal"
+                data-product="Heritage Leather Satchel"
+                data-img="https://i.postimg.cc/XJR6WjJF/images.jpg"
+                data-amount="24900"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+            alt="Vintage Watch"
+          />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold mb-2">Chronos Vintage Watch</h3>
+            <p class="text-gray-600 text-sm mb-3">
+              A modern revival of classic horology — built for legacy.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="price">$399</span>
+              <button
+                class="cta text-xs open-modal"
+                data-product="Chronos Vintage Watch"
+                data-img="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+                data-amount="39900"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1578894381163-e72c17f1f2d1?auto=format&fit=crop&w=800&q=80"
+            alt="Wool Blazer"
+          />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold mb-2">Classic Wool Blazer</h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Tailored in Scottish wool — refined, structured, effortlessly
+              vintage.
+            </p>
+            <div class="flex justify-between items-center">
+              <span class="price">$329</span>
+              <button
+                class="cta text-xs open-modal"
+                data-product="Classic Wool Blazer"
+                data-img="https://images.unsplash.com/photo-1578894381163-e72c17f1f2d1?auto=format&fit=crop&w=800&q=80"
+                data-amount="32900"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND STORY -->
+    <section class="max-w-5xl mx-auto px-6 md:px-10 py-16 text-center">
+      <h2 class="text-3xl font-semibold mb-4">The Atelier Story</h2>
+      <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        Every creation at <strong>Vintessa Atelier</strong> is the product of
+        patience, skill, and a devotion to legacy. Our artisans embrace the
+        imperfections that make each piece unique — because true luxury is not
+        about perfection, but permanence.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <h3 class="text-2xl font-semibold text-[var(--gold)] mb-2">
+        VINTESSA ATELIER
+      </h3>
+      <p class="text-sm mb-4">
+        Inspired by the past. Crafted for the present. Designed for forever.
+      </p>
+      <div class="flex justify-center gap-6 text-sm">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">Journal</a>
+      </div>
+      <p class="text-xs mt-8 text-gray-500">
+        © 2025 Vintessa Atelier. All Rights Reserved.
+      </p>
+    </footer>
+
+    <!-- PRODUCT MODAL -->
+    <div id="productModal" class="fade-overlay">
+      <div class="modal">
+        <img id="modalImg" src="" class="rounded-lg mb-4" />
+        <h3 id="modalTitle" class="text-xl font-semibold mb-2"></h3>
+        <p class="text-gray-600 mb-4 text-sm">
+          Elegantly crafted, limited edition piece from Vintessa Atelier.
+        </p>
+        <button id="payBtn" class="cta w-full mb-3">Simulate Payment</button>
+        <button
+          id="closeModal"
+          class="w-full text-sm text-gray-500 hover:text-black"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      const modal = document.getElementById("productModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalImg = document.getElementById("modalImg");
+      let currentAmount = 0;
+
+      document.querySelectorAll(".open-modal").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          modalTitle.textContent = btn.dataset.product;
+          modalImg.src = btn.dataset.img;
+          currentAmount = parseInt(btn.dataset.amount);
+          modal.style.display = "flex";
+        });
+      });
+
+      document.getElementById("closeModal").onclick = () => {
+        modal.style.display = "none";
+      };
+
+      document.getElementById("payBtn").onclick = () => {
+        const options = {
+          key: "rzp_test_1234567890",
+          amount: currentAmount,
+          currency: "USD",
+          name: "Vintessa Atelier",
+          description: modalTitle.textContent,
+          image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80",
+          handler: function (response) {
+            alert("Payment Successful! ID: " + response.razorpay_payment_id);
+          },
+          theme: { color: "#b49a5a" },
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      };
+    </script>
+  </body>
+</html>
